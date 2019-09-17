@@ -1,0 +1,14 @@
+# Dubbo Config
+spring:
+  dubbo:
+    application:
+      name: gmall-manage-consumer
+      registry: zookeeper://192.168.67.130:2181
+  #devtools Config
+  devtools:
+    livereload:
+      port: 35730
+# port Config
+server:
+  port: 8082
+

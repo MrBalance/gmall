@@ -13,7 +13,7 @@ export default {
   // 查找二级分类
   getCatalog2(catalog1Id) {
     return request({
-      url: 'getCatalog2?catalog1Id=' + catalog1Id,
+      url: 'getCatalog2/' + catalog1Id,
       method: 'post'
     })
   },
@@ -21,7 +21,7 @@ export default {
   // 查找三级分类
   getCatalog3(catalog2Id) {
     return request({
-      url: 'getCatalog3?catalog2Id=' + catalog2Id,
+      url: 'getCatalog3/' + catalog2Id,
       method: 'post'
     })
   }

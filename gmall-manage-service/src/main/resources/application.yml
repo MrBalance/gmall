@@ -1,0 +1,19 @@
+# DataSource Config
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.67.130:3306/g_mall_study
+    username: root
+    password:
+  # Dubbo Config
+  dubbo:
+    application:
+      name: gmall-manage-service
+      registry: zookeeper://192.168.67.130:2181
+  #devtools Config
+  devtools:
+    livereload:
+      port: 35729
+# port Config
+server:
+  port: 8081
