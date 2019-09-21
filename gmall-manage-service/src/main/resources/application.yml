@@ -2,7 +2,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.67.130:3306/g_mall_study
+    url: jdbc:mysql://192.168.67.130:3306/g_mall_study?characterEncoding=UTF-8
     username: root
     password:
   # Dubbo Config
@@ -17,3 +17,10 @@ spring:
 # port Config
 server:
   port: 8081
+
+logging:
+  level:
+    com:
+      balance:
+        gmall:
+            dao: debug

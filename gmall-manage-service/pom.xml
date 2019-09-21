@@ -25,13 +25,6 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
-        <!--热部署依赖-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-            <optional>true</optional>
-        </dependency>
         <!--web依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -50,8 +43,13 @@
         </dependency>
         <!--dictionary模块依赖-->
         <dependency>
-            <groupId>com.balance.gmall</groupId>
+            <groupId>com.balance.gmall.dictionary</groupId>
             <artifactId>gmall-dictionary</artifactId>
+        </dependency>
+        <!--base模块依赖-->
+        <dependency>
+            <groupId>com.balance.gmall.base</groupId>
+            <artifactId>gmall-base</artifactId>
         </dependency>
         <!--zookeeper驱动-->
         <dependency>

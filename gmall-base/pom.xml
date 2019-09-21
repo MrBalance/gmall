@@ -2,15 +2,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.balance.gmall</groupId>
         <artifactId>gmall</artifactId>
+        <groupId>com.balance.gmall</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <groupId>com.balance.gmall.manage.api</groupId>
-    <artifactId>gmall-manage-api</artifactId>
-    <name>gmall-manage-api</name>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.balance.gmall.base</groupId>
+    <artifactId>gmall-base</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
@@ -20,18 +20,22 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
+        <!--aop依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+        <!--web依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
         <!--mybatis plus依赖-->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>${mybatis-plus.version}</version>
         </dependency>
-        <!--base模块依赖-->
-        <dependency>
-            <groupId>com.balance.gmall.base</groupId>
-            <artifactId>gmall-base</artifactId>
-        </dependency>
     </dependencies>
-
 
 </project>

@@ -22,6 +22,7 @@
         <module>gmall-manage-service</module>
         <module>gmall-manage-consumer</module>
         <module>gmall-dictionary</module>
+        <module>gmall-base</module>
     </modules>
 
     <properties>
@@ -29,6 +30,7 @@
         <mybatis-plus.version>3.2.0</mybatis-plus.version>
         <gmall-manage-api.version>1.0-SNAPSHOT</gmall-manage-api.version>
         <gmall-dictionary.version>1.0-SNAPSHOT</gmall-dictionary.version>
+        <gmall-base.version>1.0-SNAPSHOT</gmall-base.version>
         <mysql.version>5.1.34</mysql.version>
         <zookeeper.version>0.10</zookeeper.version>
         <dubbo.version>2.0.0</dubbo.version>
@@ -42,6 +44,7 @@
 
     <dependencyManagement>
         <dependencies>
+
             <!--mybatis plus依赖-->
             <dependency>
                 <groupId>com.baomidou</groupId>
@@ -56,9 +59,15 @@
             </dependency>
             <!--dictionary模块依赖-->
             <dependency>
-                <groupId>com.balance.gmall</groupId>
+                <groupId>com.balance.gmall.dictionary</groupId>
                 <artifactId>gmall-dictionary</artifactId>
                 <version>${gmall-dictionary.version}</version>
+            </dependency>
+            <!--base模块依赖-->
+            <dependency>
+                <groupId>com.balance.gmall.base</groupId>
+                <artifactId>gmall-base</artifactId>
+                <version>${gmall-base.version}</version>
             </dependency>
             <!--zookeeper驱动-->
             <dependency>
@@ -106,5 +115,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
 
 </project>

@@ -6,6 +6,8 @@
     "whitelist": [
         "pms_base_catalog1",
         "pms_base_catalog2",
-        "pms_base_catalog3"
+        "pms_base_catalog3",
+        "pms_base_attr_info",
+        "pms_base_attr_value"
     ]
 }

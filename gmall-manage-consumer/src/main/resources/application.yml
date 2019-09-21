@@ -4,6 +4,9 @@ spring:
     application:
       name: gmall-manage-consumer
       registry: zookeeper://192.168.67.130:2181
+    consumer:
+      time: 1000
+
   #devtools Config
   devtools:
     livereload:
