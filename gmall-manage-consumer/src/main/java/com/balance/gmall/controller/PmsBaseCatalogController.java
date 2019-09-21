@@ -5,11 +5,12 @@ import com.balance.gmall.po.catalog.PmsBaseCatalog1;
 import com.balance.gmall.po.catalog.PmsBaseCatalog2;
 import com.balance.gmall.po.catalog.PmsBaseCatalog3;
 import com.balance.gmall.response.Response;
-import com.balance.gmall.service.catalog.PmsBaseCatalog1Service;
-import com.balance.gmall.service.catalog.PmsBaseCatalog2Service;
-import com.balance.gmall.service.catalog.PmsBaseCatalog3Service;
+import com.balance.gmall.service.PmsBaseCatalogService;
 import com.balance.gmall.util.response.ResponseUtil;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -25,11 +26,7 @@ import java.util.List;
 @RestController
 public class PmsBaseCatalogController {
     @Reference
-    private PmsBaseCatalog1Service pmsBaseCatalog1Service;
-    @Reference
-    private PmsBaseCatalog2Service pmsBaseCatalog2Service;
-    @Reference
-    private PmsBaseCatalog3Service pmsBaseCatalog3Service;
+    private PmsBaseCatalogService pmsBaseCatalogService;
 
 
     /**
@@ -43,7 +40,7 @@ public class PmsBaseCatalogController {
      */
     @PostMapping("/getCatalog1")
     public Response<List<PmsBaseCatalog1>> selectCatalog1AllList() {
-        return ResponseUtil.success(pmsBaseCatalog1Service.selectAllList());
+        return ResponseUtil.success(pmsBaseCatalogService.selectAllList());
     }
 
 
@@ -58,7 +55,7 @@ public class PmsBaseCatalogController {
      */
     @PostMapping("/getCatalog2/{catalog1Id}")
     public Response<List<PmsBaseCatalog2>> selectCatalog2List(@PathVariable("catalog1Id") Long catalog1Id) {
-        return ResponseUtil.success(pmsBaseCatalog2Service.selectListByCatalog1IdId(catalog1Id));
+        return ResponseUtil.success(pmsBaseCatalogService.selectListByCatalog1IdId(catalog1Id));
     }
 
 
@@ -73,6 +70,6 @@ public class PmsBaseCatalogController {
      */
     @PostMapping("/getCatalog3/{catalog2Id}")
     public Response<List<PmsBaseCatalog3>> selectCatalog3List(@PathVariable("catalog2Id") Long catalog2Id) {
-        return ResponseUtil.success(pmsBaseCatalog3Service.selectListByCatalog2IdId(catalog2Id));
+        return ResponseUtil.success(pmsBaseCatalogService.selectListByCatalog2IdId(catalog2Id));
     }
 }

@@ -1,12 +1,13 @@
-package com.balance.gmall.service.impl.attr;
+package com.balance.gmall.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.balance.gmall.dao.attr.PmsBaseAttrInfoDao;
+import com.balance.gmall.dao.attr.PmsBaseAttrValueDao;
 import com.balance.gmall.dictionary.PmsBaseAttrInfoField;
+import com.balance.gmall.dictionary.PmsBaseAttrValueField;
 import com.balance.gmall.po.attr.PmsBaseAttrInfo;
 import com.balance.gmall.po.attr.PmsBaseAttrValue;
-import com.balance.gmall.service.attr.PmsBaseAttrInfoService;
-import com.balance.gmall.service.attr.PmsBaseAttrValueService;
+import com.balance.gmall.service.PmsBaseAtrrService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,20 +16,26 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * @description: 平台属性service层
+ * 平台属性实现类
  * @author: yunzhang.du
- * @date: 2019年09月16日
+ * @date: 2019年09月21日
  * @version: v1.0
  * @since: JDK 1.8
  */
 @Component
-@Service(interfaceClass = PmsBaseAttrInfoService.class)
-public class PmsBaseAttrInfoServiceImpl implements PmsBaseAttrInfoService {
-
+@Service(interfaceClass = PmsBaseAtrrService.class)
+public class PmsBaseAtrrServiceImpl implements PmsBaseAtrrService {
     @Resource
     PmsBaseAttrInfoDao pmsBaseAttrInfoDao;
     @Resource
-    PmsBaseAttrValueService pmsBaseAttrValueService;
+    PmsBaseAttrValueDao pmsBaseAttrValueDao;
+
+    @Override
+    public List<PmsBaseAttrValue> selectListByAttrId(Long attrId) {
+        QueryWrapper<PmsBaseAttrValue> wrapper = new QueryWrapper<>();
+        wrapper.eq(PmsBaseAttrValueField.ATTR_ID,attrId);
+        return pmsBaseAttrValueDao.selectList(wrapper);
+    }
 
     @Override
     public List<PmsBaseAttrInfo> selectListByCatalog3IdId(Long catalog3Id) {
@@ -49,17 +56,27 @@ public class PmsBaseAttrInfoServiceImpl implements PmsBaseAttrInfoService {
             List<PmsBaseAttrValue> pmsBaseAttrValues = attrInfo.getAttrValueList();
             pmsBaseAttrValues.forEach(attrValue -> {
                 attrValue.setAttrId(insertId);
-                pmsBaseAttrValueService.saveAttrValue(attrValue);
+                saveAttrValue(attrValue);
             });
         } else {
             attrInfoResult = pmsBaseAttrInfoDao.updateById(attrInfo);
             List<PmsBaseAttrValue> pmsBaseAttrValues = attrInfo.getAttrValueList();
-            pmsBaseAttrValueService.deleteAttrValueByAtrrInfoId(id);
+            deleteAttrValueByAtrrInfoId(id);
             pmsBaseAttrValues.forEach(attrValue -> {
                 attrValue.setAttrId(id);
-                pmsBaseAttrValueService.saveAttrValue(attrValue);
+                saveAttrValue(attrValue);
             });
         }
         return attrInfoResult;
+    }
+
+    private Integer saveAttrValue(PmsBaseAttrValue attrValue) {
+        return  pmsBaseAttrValueDao.insert(attrValue);
+    }
+
+    private Integer deleteAttrValueByAtrrInfoId(Long attrId){
+        QueryWrapper<PmsBaseAttrValue> wrapper = new QueryWrapper<>();
+        wrapper.eq(PmsBaseAttrValueField.ATTR_ID,attrId);
+        return pmsBaseAttrValueDao.delete(wrapper);
     }
 }
