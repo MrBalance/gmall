@@ -4,25 +4,27 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.balance.gmall.po.attr.PmsBaseAttrInfo;
 import com.balance.gmall.po.attr.PmsBaseAttrValue;
 import com.balance.gmall.response.Response;
-import com.balance.gmall.service.PmsBaseAtrrService;
+import com.balance.gmall.service.BaseAttrService;
 import com.balance.gmall.util.response.ResponseUtil;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 /**
- * @description: 一级分类controller层
+ * 一级分类controller层
+ *
  * @author: yunzhang.du
  * @date: 2019年09月16日
  * @version: v1.0
  * @since: JDK 1.8
  */
-@RestController
 // 解决跨域问题
-@CrossOrigin()
-public class PmsBaseAttrController {
+@CrossOrigin
+@RestController
+public class BaseAttrController {
+
     @Reference
-    private PmsBaseAtrrService pmsBaseAtrrService;
+    private BaseAttrService pmsBaseAtrrService;
 
     /**
      * 根据平台属性id，列出平台属性值

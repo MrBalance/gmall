@@ -2,8 +2,7 @@ package com.balance.gmall;
 
 import com.balance.gmall.po.attr.PmsBaseAttrInfo;
 import com.balance.gmall.po.attr.PmsBaseAttrValue;
-import com.balance.gmall.service.attr.PmsBaseAttrInfoService;
-import com.balance.gmall.service.attr.PmsBaseAttrValueService;
+import com.balance.gmall.service.BaseAttrService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,9 +23,7 @@ import java.util.List;
 @SpringBootTest
 public class PmsBaseAttrInfoServiceTest {
     @Resource
-    PmsBaseAttrInfoService pmsBaseAttrInfoService;
-    @Resource
-    PmsBaseAttrValueService pmsBaseAttrValueService;
+    BaseAttrService attrService;
 
     @Test
     public void saveAttrInfo() {
@@ -41,6 +38,6 @@ public class PmsBaseAttrInfoServiceTest {
         pmsBaseAttrValues.add(pmsBaseAttrValue1);
         pmsBaseAttrValues.add(pmsBaseAttrValue2);
         pmsBaseAttrInfo.setAttrValueList(pmsBaseAttrValues);
-        pmsBaseAttrInfoService.saveAttrInfo(pmsBaseAttrInfo);
+        attrService.saveAttrInfo(pmsBaseAttrInfo);
     }
 }

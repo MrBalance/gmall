@@ -3,11 +3,14 @@ package com.balance.gmall.service.impl;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.balance.gmall.dao.attr.PmsBaseAttrInfoDao;
 import com.balance.gmall.dao.attr.PmsBaseAttrValueDao;
+import com.balance.gmall.dao.attr.PmsBaseSaleAttrDao;
 import com.balance.gmall.dictionary.PmsBaseAttrInfoField;
 import com.balance.gmall.dictionary.PmsBaseAttrValueField;
+import com.balance.gmall.dictionary.PmsBaseSaleAttrField;
 import com.balance.gmall.po.attr.PmsBaseAttrInfo;
 import com.balance.gmall.po.attr.PmsBaseAttrValue;
-import com.balance.gmall.service.PmsBaseAtrrService;
+import com.balance.gmall.po.attr.PmsBaseSaleAttr;
+import com.balance.gmall.service.BaseAttrService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,12 +26,14 @@ import java.util.List;
  * @since: JDK 1.8
  */
 @Component
-@Service(interfaceClass = PmsBaseAtrrService.class)
-public class PmsBaseAtrrServiceImpl implements PmsBaseAtrrService {
+@Service(interfaceClass = BaseAttrService.class)
+public class BaseAttrServiceImpl implements BaseAttrService {
     @Resource
     PmsBaseAttrInfoDao pmsBaseAttrInfoDao;
     @Resource
     PmsBaseAttrValueDao pmsBaseAttrValueDao;
+    @Resource
+    PmsBaseSaleAttrDao pmsBaseSaleAttrDao;
 
     @Override
     public List<PmsBaseAttrValue> selectListByAttrId(Long attrId) {
@@ -70,10 +75,34 @@ public class PmsBaseAtrrServiceImpl implements PmsBaseAtrrService {
         return attrInfoResult;
     }
 
+    @Override
+    public List<PmsBaseSaleAttr> baseSaleAttrListByCatalog3Id(Long catalog3Id) {
+        QueryWrapper<PmsBaseSaleAttr> wrapper = new QueryWrapper<>();
+        wrapper.eq(PmsBaseSaleAttrField.CATALOG3_ID,catalog3Id);
+        List<PmsBaseSaleAttr> pmsBaseSaleAttrs = pmsBaseSaleAttrDao.selectList(wrapper);
+        return pmsBaseSaleAttrs;
+    }
+
+    /**
+     * 保存平台属性值
+     * @param: attrValue 平台属性值
+     * @return: Integer
+     * @throw:
+     * @Date: 2019/9/23 - 15:36
+     * @author: yunzhang.du
+     */
     private Integer saveAttrValue(PmsBaseAttrValue attrValue) {
         return  pmsBaseAttrValueDao.insert(attrValue);
     }
 
+    /**
+     * 通过平台属性id删除平台属性值
+     * @param: attrId 平台属性id
+     * @return: Integer
+     * @throw:
+     * @Date: 2019/9/23 - 15:36
+     * @author: yunzhang.du
+     */
     private Integer deleteAttrValueByAtrrInfoId(Long attrId){
         QueryWrapper<PmsBaseAttrValue> wrapper = new QueryWrapper<>();
         wrapper.eq(PmsBaseAttrValueField.ATTR_ID,attrId);

@@ -1,8 +1,8 @@
 package com.balance.gmall.service;
 
-import com.balance.gmall.exception.DescribeException;
 import com.balance.gmall.po.attr.PmsBaseAttrInfo;
 import com.balance.gmall.po.attr.PmsBaseAttrValue;
+import com.balance.gmall.po.attr.PmsBaseSaleAttr;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ import java.util.List;
  * @version: v1.0
  * @since: JDK 1.8
  */
-public interface PmsBaseAtrrService {
+public interface BaseAttrService {
 
 
     /**
@@ -42,12 +42,21 @@ public interface PmsBaseAtrrService {
     /**
      * 根据传入的平台属性对象，保存平台属性和平台值
      *
-     * @param: attrInfo
+     * @param: attrInfo 平台属性对象
      * @return: Integer
-     * @throw: DescribeException
+     * @throw:
      * @Date: 2019/9/21 - 17:24
      * @author: yunzhang.du
      */
-    Integer saveAttrInfo(PmsBaseAttrInfo attrInfo) throws DescribeException;
+    Integer saveAttrInfo(PmsBaseAttrInfo attrInfo);
 
+    /**
+     * 根据传入平台三级分类，列表展示平台商品属性
+     * @param: catalog3Id 根据传入平台三级分类
+     * @return: List<PmsBaseSaleAttr>
+     * @throw:
+     * @Date: 2019/9/23 - 14:50
+     * @author: yunzhang.du
+     */
+    List<PmsBaseSaleAttr> baseSaleAttrListByCatalog3Id(Long catalog3Id);
 }

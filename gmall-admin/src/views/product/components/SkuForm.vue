@@ -5,7 +5,7 @@
     <el-form :model="skuForm" label-width="150px">
 
       <el-form-item label="spu名称">
-        <span>{{ spuName }} </span>
+        <span>{{ productName }} </span>
       </el-form-item>
 
       <el-form-item label="sku名称">
@@ -121,14 +121,14 @@ export default {
 
   props: {
     catalogId: {
-      type: String,
+      type: Number,
       default: null
     },
     spuId: {
-      type: String,
+      type: Number,
       default: null
     },
-    spuName: {
+    productName: {
       type: String,
       default: null
     }

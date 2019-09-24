@@ -5,7 +5,7 @@ export default {
   // 根据三级分类id获取属性列表
   getSpuList(catalog3Id) {
     return request({
-      url: 'spuList?catalog3Id=' + catalog3Id,
+      url: 'spuList/' + catalog3Id,
       method: 'get'
     })
   },
@@ -20,10 +20,11 @@ export default {
   },
 
   // 获取基本销售属性列表
-  getBaseSaleAttrList() {
+  getBaseSaleAttrList(catalog3Id) {
     return request({
-      url: 'baseSaleAttrList',
-      method: 'post'
+      url: 'baseSaleAttrList/' + catalog3Id,
+      method: 'post',
+      data: catalog3Id
     })
   },
 

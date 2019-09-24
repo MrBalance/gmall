@@ -1,5 +1,6 @@
 package com.balance.gmall.service.impl;
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.balance.gmall.dao.catalog.PmsBaseCatalog1Dao;
 import com.balance.gmall.dao.catalog.PmsBaseCatalog2Dao;
 import com.balance.gmall.dao.catalog.PmsBaseCatalog3Dao;
@@ -8,8 +9,9 @@ import com.balance.gmall.dictionary.PmsBaseCatalog3Field;
 import com.balance.gmall.po.catalog.PmsBaseCatalog1;
 import com.balance.gmall.po.catalog.PmsBaseCatalog2;
 import com.balance.gmall.po.catalog.PmsBaseCatalog3;
-import com.balance.gmall.service.PmsBaseCatalogService;
+import com.balance.gmall.service.BaseCatalogService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -20,7 +22,9 @@ import java.util.List;
  * @version: v1.0
  * @since: JDK 1.8
  */
-public class PmsBaseCatalogServiceImpl implements PmsBaseCatalogService {
+@Component
+@Service(interfaceClass = BaseCatalogService.class)
+public class BaseCatalogServiceImpl implements BaseCatalogService {
     @Resource
     PmsBaseCatalog1Dao pmsBaseCatalog1Dao;
     @Resource

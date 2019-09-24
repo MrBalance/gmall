@@ -34,6 +34,7 @@
         <mysql.version>5.1.34</mysql.version>
         <zookeeper.version>0.10</zookeeper.version>
         <dubbo.version>2.0.0</dubbo.version>
+        <fastdfs-client-java.version>1.27-SNAPSHOT</fastdfs-client-java.version>
         <commons-beanutils.version>1.9.3</commons-beanutils.version>
         <commons-collections.version>3.2.2</commons-collections.version>
         <commons-lang.version>2.6</commons-lang.version>
@@ -80,6 +81,12 @@
                 <groupId>com.alibaba.spring.boot</groupId>
                 <artifactId>dubbo-spring-boot-starter</artifactId>
                 <version>${dubbo.version}</version>
+            </dependency>
+            <!--fastdfs上传下载客户端依赖-->
+            <dependency>
+                <groupId>org.csource</groupId>
+                <artifactId>fastdfs-client-java</artifactId>
+                <version>${fastdfs-client-java.version}</version>
             </dependency>
             <!--JsonObject 相关依赖包-->
             <dependency>

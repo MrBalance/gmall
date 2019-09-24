@@ -14,7 +14,7 @@ import java.util.List;
  * @version: v1.0
  * @since: JDK 1.8
  */
-public interface PmsBaseCatalogService {
+public interface BaseCatalogService {
 
     /**
      * 列出平台一级分类

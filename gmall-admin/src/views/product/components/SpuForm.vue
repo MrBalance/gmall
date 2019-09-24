@@ -3,7 +3,7 @@
   <el-form :model="spuForm" label-width="70px">
 
     <el-form-item label="spu名称">
-      <el-input v-model="spuForm.spuName"/>
+      <el-input v-model="spuForm.productName"/>
     </el-form-item>
 
     <el-form-item label="spu描述">
@@ -112,7 +112,7 @@ export default {
 
   props: {
     catalogId: {
-      type: String,
+      type: Number,
       default: null
     }
   },
@@ -129,7 +129,7 @@ export default {
       // Spu表单数据
       spuForm: {
         id: null,
-        spuName: null,
+        productName: null,
         description: null,
         catalog3Id: null,
         // 上传文件列表
@@ -157,7 +157,7 @@ export default {
       // Spu表单数据
       this.spuForm = {
         id: null,
-        spuName: null,
+        productName: null,
         description: null,
         catalog3Id: null,
         // 上传文件列表
@@ -166,12 +166,12 @@ export default {
         spuSaleAttrList: []
       }
 
-      this.getBaseSaleAttrList()
+      this.getBaseSaleAttrList(this.catalogId)
     },
 
     // 获取基本销售属性列表
-    getBaseSaleAttrList() {
-      spu.getBaseSaleAttrList().then(response => {
+    getBaseSaleAttrList(catalog3Id) {
+      spu.getBaseSaleAttrList(catalog3Id).then(response => {
         this.baseSaleAttrList = response.data
       })
     },
@@ -239,7 +239,7 @@ export default {
       // 填充上传文件列表
       this.spuForm.spuImageList.push({
         imgName: file.name,
-        imgUrl: file.response
+        imgUrl: file.url
       })
     },
 
@@ -255,7 +255,7 @@ export default {
       fileList.forEach(file => {
         this.spuForm.spuImageList.push({
           imgName: file.name,
-          imgUrl: file.response
+          imgUrl: file.url
         })
       })
     },

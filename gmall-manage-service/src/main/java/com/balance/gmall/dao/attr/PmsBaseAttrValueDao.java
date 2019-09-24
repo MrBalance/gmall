@@ -11,6 +11,5 @@ import org.apache.ibatis.annotations.Mapper;
  * @version: v1.0
  * @since: JDK 1.8
  */
-@Mapper
 public interface PmsBaseAttrValueDao extends BaseMapper<PmsBaseAttrValue> {
 }

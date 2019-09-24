@@ -1,7 +1,7 @@
 package com.balance.gmall;
 
 import com.balance.gmall.po.catalog.PmsBaseCatalog2;
-import com.balance.gmall.service.catalog.PmsBaseCatalog2Service;
+import com.balance.gmall.service.BaseCatalogService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,11 +21,11 @@ import java.util.List;
 @SpringBootTest
 public class PmsBaseCatalog2ServiceTest {
     @Resource
-    PmsBaseCatalog2Service pmsBaseCatalog2Service;
+    BaseCatalogService catalogService;
 
     @Test
     public void selectListByCatalog1IdIdTest() {
-        List<PmsBaseCatalog2> pmsBaseCatalog2s = pmsBaseCatalog2Service.selectListByCatalog1IdId(1L);
+        List<PmsBaseCatalog2> pmsBaseCatalog2s = catalogService.selectListByCatalog1IdId(1L);
         pmsBaseCatalog2s.forEach(System.out::println);
     }
 }

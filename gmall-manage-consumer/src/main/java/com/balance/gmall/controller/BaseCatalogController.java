@@ -5,7 +5,7 @@ import com.balance.gmall.po.catalog.PmsBaseCatalog1;
 import com.balance.gmall.po.catalog.PmsBaseCatalog2;
 import com.balance.gmall.po.catalog.PmsBaseCatalog3;
 import com.balance.gmall.response.Response;
-import com.balance.gmall.service.PmsBaseCatalogService;
+import com.balance.gmall.service.BaseCatalogService;
 import com.balance.gmall.util.response.ResponseUtil;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * @description: 分类controller层
+ * 分类controller层
+ *
  * @author: yunzhang.du
  * @date: 2019年09月16日
  * @version: v1.0
@@ -24,10 +25,10 @@ import java.util.List;
 // 解决跨域问题
 @CrossOrigin
 @RestController
-public class PmsBaseCatalogController {
-    @Reference
-    private PmsBaseCatalogService pmsBaseCatalogService;
+public class BaseCatalogController {
 
+    @Reference
+    private BaseCatalogService pmsBaseCatalogService;
 
     /**
      * 获取一级分类所有数据
