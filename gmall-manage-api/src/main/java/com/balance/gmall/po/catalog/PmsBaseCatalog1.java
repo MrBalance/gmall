@@ -2,6 +2,8 @@ package com.balance.gmall.po.catalog;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -17,6 +19,7 @@ public class PmsBaseCatalog1 implements Serializable {
      * 编号
      */
     @TableId(type = IdType.ID_WORKER)
+    @JsonSerialize(using= ToStringSerializer.class)
     private Long id;
 
     /**

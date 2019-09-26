@@ -40,7 +40,7 @@
 
         <el-table-column label="操作" width="200" align="center">
           <template slot-scope="scope">
-            <el-button type="primary" size="mini" icon="el-icon-plus" @click="addSku(scope.row.id, scope.row.productName)">添加SKU</el-button>
+            <el-button type="primary" size="mini" icon="el-icon-plus" @click="addSku(scope.row.id, scope.row.productName, scope.row.description)">添加SKU</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -59,8 +59,9 @@
       v-show="showSkuForm"
       ref="skuForm"
       :catalog-id="catalogId"
-      :spu-id="selectedSpu.spuId"
-      :spu-name="selectedSpu.productName"
+      :product-id="selectedSpu.spuId"
+      :product-name="selectedSpu.productName"
+      :description="selectedSpu.description"
       @listenOnSave="onSkuSave()"
       @listenOnClose="onSkuClose()"/>
 
@@ -95,7 +96,8 @@ export default {
       // 选中的spu
       selectedSpu: {
         spuId: null,
-        productName: null
+        productName: null,
+        description: null
       }
     }
   },
@@ -154,9 +156,10 @@ export default {
     },
 
     // 添加sku
-    addSku(spuId, productName) {
+    addSku(spuId, productName, description) {
       this.selectedSpu.spuId = spuId
       this.selectedSpu.productName = productName
+      this.selectedSpu.description = description
 
       // 初始化表单
       this.$refs.skuForm.init(spuId)

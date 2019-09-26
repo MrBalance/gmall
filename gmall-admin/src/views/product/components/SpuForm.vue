@@ -112,7 +112,7 @@ export default {
 
   props: {
     catalogId: {
-      type: Number,
+      type: String,
       default: null
     }
   },
@@ -137,7 +137,8 @@ export default {
         // 销售属性
         spuSaleAttrList: []
       },
-      spuSaleAttrListTemp: [], // 临时数据：格式：saleAttrId|saleAttrName
+      spuSaleAttrListTemp: [], // 临时销售属性数据：格式：saleAttrId|saleAttrName
+      spuImageListTemp: [], // 临时上传文件列表数据：格式：saleAttrId|saleAttrName
 
       // 销售属性列表loading
       spuSaleAttrListLoading: false,
@@ -199,10 +200,12 @@ export default {
           }
           saleAttr.spuSaleAttrValueList.push(saleAttrValue)
         })
-
+        this.spuForm.spuImageList = []
         this.spuForm.spuSaleAttrList.push(saleAttr)
       })
-
+      this.spuImageListTemp.forEach(spuImage => {
+        this.spuForm.spuImageList.push(spuImage)
+      })
       // console.log(this.spuForm)
 
       spu.saveSpuInfo(this.spuForm).then(response => {
@@ -237,9 +240,9 @@ export default {
     // 上传图片成功的回调
     onUploadSuccess(res, file) {
       // 填充上传文件列表
-      this.spuForm.spuImageList.push({
+      this.spuImageListTemp.push({
         imgName: file.name,
-        imgUrl: file.url
+        imgUrl: file.response.data
       })
     },
 
@@ -251,9 +254,9 @@ export default {
 
     // 删除上传的文件
     onUploadRemove(file, fileList) {
-      this.spuForm.spuImageList = []
+      this.spuImageListTemp = []
       fileList.forEach(file => {
-        this.spuForm.spuImageList.push({
+        this.spuImageListTemp.push({
           imgName: file.name,
           imgUrl: file.url
         })

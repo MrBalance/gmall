@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * 分类controller层
+ * 基础分类controller层
  *
  * @author: yunzhang.du
  * @date: 2019年09月16日
@@ -40,7 +40,7 @@ public class BaseCatalogController {
      * @author: yunzhang.du
      */
     @PostMapping("/getCatalog1")
-    public Response<List<PmsBaseCatalog1>> selectCatalog1AllList() {
+    public Response<List<PmsBaseCatalog1>> getCatalog1() {
         return ResponseUtil.success(pmsBaseCatalogService.selectAllList());
     }
 
@@ -55,7 +55,7 @@ public class BaseCatalogController {
      * @author: yunzhang.du
      */
     @PostMapping("/getCatalog2/{catalog1Id}")
-    public Response<List<PmsBaseCatalog2>> selectCatalog2List(@PathVariable("catalog1Id") Long catalog1Id) {
+    public Response<List<PmsBaseCatalog2>> getCatalog2(@PathVariable("catalog1Id") Long catalog1Id) {
         return ResponseUtil.success(pmsBaseCatalogService.selectListByCatalog1IdId(catalog1Id));
     }
 
@@ -70,7 +70,7 @@ public class BaseCatalogController {
      * @author: yunzhang.du
      */
     @PostMapping("/getCatalog3/{catalog2Id}")
-    public Response<List<PmsBaseCatalog3>> selectCatalog3List(@PathVariable("catalog2Id") Long catalog2Id) {
+    public Response<List<PmsBaseCatalog3>> getCatalog3(@PathVariable("catalog2Id") Long catalog2Id) {
         return ResponseUtil.success(pmsBaseCatalogService.selectListByCatalog2IdId(catalog2Id));
     }
 }

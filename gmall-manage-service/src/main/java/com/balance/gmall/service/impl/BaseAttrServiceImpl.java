@@ -29,24 +29,30 @@ import java.util.List;
 @Service(interfaceClass = BaseAttrService.class)
 public class BaseAttrServiceImpl implements BaseAttrService {
     @Resource
-    PmsBaseAttrInfoDao pmsBaseAttrInfoDao;
+    private PmsBaseAttrInfoDao pmsBaseAttrInfoDao;
     @Resource
-    PmsBaseAttrValueDao pmsBaseAttrValueDao;
+    private PmsBaseAttrValueDao pmsBaseAttrValueDao;
     @Resource
-    PmsBaseSaleAttrDao pmsBaseSaleAttrDao;
+    private PmsBaseSaleAttrDao pmsBaseSaleAttrDao;
 
     @Override
-    public List<PmsBaseAttrValue> selectListByAttrId(Long attrId) {
+    public List<PmsBaseAttrValue> selectBaseAttrValueListByAttrId(Long attrId) {
         QueryWrapper<PmsBaseAttrValue> wrapper = new QueryWrapper<>();
         wrapper.eq(PmsBaseAttrValueField.ATTR_ID,attrId);
         return pmsBaseAttrValueDao.selectList(wrapper);
     }
 
     @Override
-    public List<PmsBaseAttrInfo> selectListByCatalog3IdId(Long catalog3Id) {
+    public List<PmsBaseAttrInfo> selectBaseAttrInfoListByCatalog3IdId(Long catalog3Id) {
         QueryWrapper<PmsBaseAttrInfo> wrapper = new QueryWrapper<>();
         wrapper.eq(PmsBaseAttrInfoField.CATALOG3_ID, catalog3Id);
-        return pmsBaseAttrInfoDao.selectList(wrapper);
+        List<PmsBaseAttrInfo> pmsBaseAttrInfos = pmsBaseAttrInfoDao.selectList(wrapper);
+        pmsBaseAttrInfos.forEach(pmsBaseAttrInfo -> {
+            Long id = pmsBaseAttrInfo.getId();
+            List<PmsBaseAttrValue> pmsBaseAttrValues = selectBaseAttrValueListByAttrId(id);
+            pmsBaseAttrInfo.setAttrValueList(pmsBaseAttrValues);
+        });
+        return pmsBaseAttrInfos;
     }
 
     @Override
@@ -76,7 +82,7 @@ public class BaseAttrServiceImpl implements BaseAttrService {
     }
 
     @Override
-    public List<PmsBaseSaleAttr> baseSaleAttrListByCatalog3Id(Long catalog3Id) {
+    public List<PmsBaseSaleAttr> selectBaseSaleAttrListByCatalog3Id(Long catalog3Id) {
         QueryWrapper<PmsBaseSaleAttr> wrapper = new QueryWrapper<>();
         wrapper.eq(PmsBaseSaleAttrField.CATALOG3_ID,catalog3Id);
         List<PmsBaseSaleAttr> pmsBaseSaleAttrs = pmsBaseSaleAttrDao.selectList(wrapper);

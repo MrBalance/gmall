@@ -31,7 +31,7 @@ export default {
   // 根据spuId获取销售属性列表
   getSpuSaleAttrList(spuId) {
     return request({
-      url: 'spuSaleAttrList?spuId=' + spuId,
+      url: 'spuSaleAttrList/' + spuId,
       method: 'get'
     })
   },
@@ -39,7 +39,7 @@ export default {
   // 根据spuId获取图片列表
   getSpuImageList(spuId) {
     return request({
-      url: 'spuImageList?spuId=' + spuId,
+      url: 'spuImageList/' + spuId,
       method: 'get'
     })
   }

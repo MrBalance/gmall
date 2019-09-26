@@ -1,6 +1,10 @@
 package com.balance.gmall.po.spu;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -14,7 +18,11 @@ import java.util.List;
 public class PmsProductInfo implements Serializable {
     /**
      * 商品id
+     *
+     * 防止传给前端后精确度缺失序列化为String
      */
+    @TableId(type = IdType.ID_WORKER)
+    @JsonSerialize(using= ToStringSerializer.class)
     private Long id;
 
     /**

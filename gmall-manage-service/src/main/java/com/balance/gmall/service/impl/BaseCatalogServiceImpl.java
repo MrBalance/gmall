@@ -26,11 +26,11 @@ import java.util.List;
 @Service(interfaceClass = BaseCatalogService.class)
 public class BaseCatalogServiceImpl implements BaseCatalogService {
     @Resource
-    PmsBaseCatalog1Dao pmsBaseCatalog1Dao;
+    private PmsBaseCatalog1Dao pmsBaseCatalog1Dao;
     @Resource
-    PmsBaseCatalog2Dao pmsBaseCatalog2Dao;
+    private PmsBaseCatalog2Dao pmsBaseCatalog2Dao;
     @Resource
-    PmsBaseCatalog3Dao pmsBaseCatalog3Dao;
+    private PmsBaseCatalog3Dao pmsBaseCatalog3Dao;
 
     @Override
     public List<PmsBaseCatalog1> selectAllList() {

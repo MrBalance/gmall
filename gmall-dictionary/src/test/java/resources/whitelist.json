@@ -14,7 +14,10 @@
         "pms_product_info",
         "pms_product_sale_attr",
         "pms_product_sale_attr_value",
-        "pms_product_vertify_record"
-
+        "pms_product_vertify_record",
+        "pms_sku_attr_value",
+        "pms_sku_image",
+        "pms_sku_info",
+        "pms_sku_sale_attr_value"
     ]
 }

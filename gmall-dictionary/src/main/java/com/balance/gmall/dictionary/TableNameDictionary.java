@@ -23,4 +23,12 @@ public class TableNameDictionary {
 	public final static String PMS_PRODUCT_SALE_ATTR_VALUE = "pms_product_sale_attr_value";
 
 	public final static String PMS_PRODUCT_VERTIFY_RECORD = "pms_product_vertify_record";
+
+	public final static String PMS_SKU_ATTR_VALUE = "pms_sku_attr_value";
+
+	public final static String PMS_SKU_IMAGE = "pms_sku_image";
+
+	public final static String PMS_SKU_INFO = "pms_sku_info";
+
+	public final static String PMS_SKU_SALE_ATTR_VALUE = "pms_sku_sale_attr_value";
 }

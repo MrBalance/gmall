@@ -121,14 +121,18 @@ export default {
 
   props: {
     catalogId: {
-      type: Number,
+      type: String,
       default: null
     },
-    spuId: {
-      type: Number,
+    productId: {
+      type: String,
       default: null
     },
     productName: {
+      type: String,
+      default: null
+    },
+    description: {
       type: String,
       default: null
     }
@@ -140,7 +144,7 @@ export default {
       // Sku表单数据
       skuForm: {
         id: null,
-        spuId: null,
+        productId: null,
         price: null,
         skuName: null,
         weight: null,
@@ -172,11 +176,11 @@ export default {
 
   methods: {
 
-    init(spuId) {
+    init(productId) {
       // Sku表单数据
       this.skuForm = {
         id: null,
-        spuId: null,
+        productId: null,
         price: null,
         skuName: null,
         weight: null,
@@ -192,9 +196,11 @@ export default {
       // 获取平台属性列表
       this.getAttrInfoList()
       // 获取销售属性列表
-      this.getSaleAttrList(spuId)
+      this.getSaleAttrList(productId)
       // 获取图片列表
-      this.getSpuImageList(spuId)
+      this.getSpuImageList(productId)
+      // 获取销售信息
+      this.getSpuInfo(productId)
     },
 
     // 获取平台属性列表
@@ -205,18 +211,24 @@ export default {
       })
     },
 
+    // 获取销售信息
+    getSpuInfo(productId) {
+      this.skuForm.skuName = this.productName
+      this.skuForm.skuDesc = this.description
+    },
+
     // 获取销售属性列表
-    getSaleAttrList(spuId) {
+    getSaleAttrList(productId) {
       // 查询数据
-      spu.getSpuSaleAttrList(spuId).then(response => {
+      spu.getSpuSaleAttrList(productId).then(response => {
         this.saleAttrList = response.data
       })
     },
 
     // 获取图片列表
-    getSpuImageList(spuId) {
+    getSpuImageList(productId) {
       // 查询数据
-      spu.getSpuImageList(spuId).then(response => {
+      spu.getSpuImageList(productId).then(response => {
         this.skuImageList = response.data
       })
     },
@@ -237,7 +249,7 @@ export default {
     // 保存Sku
     saveSkuInfo() {
       this.skuForm.catalog3Id = this.catalogId
-      this.skuForm.spuId = this.spuId
+      this.skuForm.productId = this.productId
 
       // 填充平台属性
       this.skuForm.skuAttrValueList = []
@@ -267,7 +279,7 @@ export default {
       this.skuForm.skuImageList = []
       this.multipleSelectionSkuImageList.forEach(skuImageTemp => {
         const skuImage = {
-          spuImgId: skuImageTemp.id,
+          productImgId: skuImageTemp.id,
           imgName: skuImageTemp.imgName,
           imgUrl: skuImageTemp.imgUrl,
           isDefault: skuImageTemp.default ? 1 : 0

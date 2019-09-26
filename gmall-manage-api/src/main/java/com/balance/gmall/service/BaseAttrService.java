@@ -26,7 +26,7 @@ public interface BaseAttrService {
      * @Date: 2019/9/21 - 17:21
      * @author: yunzhang.du
      */
-    List<PmsBaseAttrInfo> selectListByCatalog3IdId(Long catalog3Id);
+    List<PmsBaseAttrInfo> selectBaseAttrInfoListByCatalog3IdId(Long catalog3Id);
 
     /**
      * 根据平台属性id，列出平台属性值
@@ -37,7 +37,7 @@ public interface BaseAttrService {
      * @Date: 2019/9/21 - 17:25
      * @author: yunzhang.du
      */
-    List<PmsBaseAttrValue> selectListByAttrId(Long attrId);
+    List<PmsBaseAttrValue> selectBaseAttrValueListByAttrId(Long attrId);
 
     /**
      * 根据传入的平台属性对象，保存平台属性和平台值
@@ -58,5 +58,5 @@ public interface BaseAttrService {
      * @Date: 2019/9/23 - 14:50
      * @author: yunzhang.du
      */
-    List<PmsBaseSaleAttr> baseSaleAttrListByCatalog3Id(Long catalog3Id);
+    List<PmsBaseSaleAttr> selectBaseSaleAttrListByCatalog3Id(Long catalog3Id);
 }

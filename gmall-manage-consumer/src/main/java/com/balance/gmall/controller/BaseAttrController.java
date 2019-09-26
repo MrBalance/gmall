@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * 一级分类controller层
+ *平台属性controller层
  *
  * @author: yunzhang.du
  * @date: 2019年09月16日
@@ -37,7 +37,7 @@ public class BaseAttrController {
      */
     @PostMapping("/getAttrValueList/{attrId}")
     public Response<List<PmsBaseAttrValue>> getAttrValueList(@PathVariable("attrId") Long attrId) {
-        return ResponseUtil.success(pmsBaseAtrrService.selectListByAttrId(attrId));
+        return ResponseUtil.success(pmsBaseAtrrService.selectBaseAttrValueListByAttrId(attrId));
     }
 
     /**
@@ -64,8 +64,8 @@ public class BaseAttrController {
      * @author: yunzhang.du
      */
     @GetMapping("/attrInfoList/{catalog3Id}")
-    public Response<List<PmsBaseAttrInfo>> selectAllList(@PathVariable("catalog3Id") Long catalog3Id) {
-        return ResponseUtil.success(pmsBaseAtrrService.selectListByCatalog3IdId(catalog3Id));
+    public Response<List<PmsBaseAttrInfo>> attrInfoList(@PathVariable("catalog3Id") Long catalog3Id) {
+        return ResponseUtil.success(pmsBaseAtrrService.selectBaseAttrInfoListByCatalog3IdId(catalog3Id));
     }
 
 

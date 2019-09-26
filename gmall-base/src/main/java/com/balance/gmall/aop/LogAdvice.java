@@ -1,7 +1,6 @@
 package com.balance.gmall.aop;
 
 import lombok.extern.slf4j.Slf4j;
-import net.sf.json.JSONObject;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -53,7 +52,7 @@ public class LogAdvice {
             String logInfo = "|接受请求|-|url|-[" + url + "]" +
                     "-|地址|-[" + address + "]" +
                     "-|方法|-[" + method + "]" +
-                    "-|参数|-[" + JSONObject.fromObject(param) + "]";
+                    "-|参数|-[" + param + "]";
             log.info(logInfo);
         }
     }
