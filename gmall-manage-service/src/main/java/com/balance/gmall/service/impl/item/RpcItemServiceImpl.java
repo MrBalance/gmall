@@ -117,6 +117,7 @@ public class RpcItemServiceImpl implements RpcItemService {
         return pmsProductSaleAttrs;
     }
 
+    @SuppressWarnings("unchecked")
     public Map selectPmsSkuInfoJsonBySpuId(Long productId) {
         Map<String, String> pmsSkuInfoJson = new HashMap<>();
         RBucket<Map> bucket = redissonClient.getBucket("pmsSkuInfoJson:" + productId);
