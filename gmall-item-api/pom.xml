@@ -9,24 +9,15 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.balance.gmall.dictionary</groupId>
-    <artifactId>gmall-dictionary</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <groupId>com.balance.gmall.item.api</groupId>
+    <artifactId>gmall-item-api</artifactId>
     <dependencies>
-        <!--jdbc驱动依赖-->
+        <!--lombok注解依赖-->
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
-        <!--JsonObject 相关依赖包-->
-        <dependency>
-            <groupId>net.sf.json-lib</groupId>
-            <artifactId>json-lib</artifactId>
-            <classifier>jdk15</classifier>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
         </dependency>
     </dependencies>
-
-
-
 
 </project>

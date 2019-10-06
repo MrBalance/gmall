@@ -7,10 +7,10 @@
         <artifactId>gmall</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <groupId>com.balance.gmall.item.consumer</groupId>
-    <artifactId>gmall-item-consumer</artifactId>
+    <groupId>com.balance.gmall.item.service</groupId>
+    <artifactId>gmall-item-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>gmall-item-consumer</name>
+    <name>gmall-item-service</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -18,21 +18,16 @@
     </properties>
 
     <dependencies>
-        <!--测试依赖-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
         <!--web依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <!--thymeleaf依赖-->
+        <!--测试类依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
         <!--manage模块api依赖-->
         <dependency>
@@ -48,6 +43,11 @@
         <dependency>
             <groupId>com.balance.gmall.base</groupId>
             <artifactId>gmall-base</artifactId>
+        </dependency>
+        <!--service-base模块依赖-->
+        <dependency>
+            <groupId>com.balance.gmall.service.base</groupId>
+            <artifactId>gmall-service-base</artifactId>
         </dependency>
     </dependencies>
 

@@ -11,7 +11,7 @@ public enum ExceptionEnum {
 
     SUCCESS(0,"执行成功"),
     OPERATION_FAILED(-1,"操作失败"),
-    USER_NOT_FIND(1001,"用户不存在"),
+    DATA_LOAD_FAIL(1001,"数据加载失败"),
     ;
 
     private Integer code;

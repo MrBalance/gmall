@@ -26,10 +26,18 @@
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>${mybatis-plus.version}</version>
         </dependency>
-        <!--base模块依赖-->
+        <!--序列化依赖-->
         <dependency>
-            <groupId>com.balance.gmall.base</groupId>
-            <artifactId>gmall-base</artifactId>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
+        <!--JsonObject 相关依赖包-->
+        <dependency>
+            <groupId>net.sf.json-lib</groupId>
+            <artifactId>json-lib</artifactId>
+            <classifier>jdk15</classifier>
         </dependency>
     </dependencies>
 

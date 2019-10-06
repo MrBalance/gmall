@@ -10,6 +10,12 @@ spring:
     application:
       name: gmall-manage-service
       registry: zookeeper://192.168.67.130:2181
+      port: 20880
+  # Redis Config
+  redis:
+    host: 192.168.67.130
+    port: 6379
+    password:
   #devtools Config
   devtools:
     livereload:

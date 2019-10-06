@@ -9,7 +9,6 @@ $(function(){
             }
         });
         $('.shopjieshao li').each(function(i) {
-			console.log(i)
 			$(this).click(function() {
 				$('.shopjieshao li a').css('color', '#666666');
 				$(this).css('background', ' #e4393c').siblings().css('background', '#f7f7f7');
@@ -18,7 +17,6 @@ $(function(){
 			})
 		})
         $('.shopjieshaos li').each(function(i) {
-			console.log(i)
 			$(this).click(function() {
 				$('.shopjieshaos li a').css('color', '#666666');
 				$(this).css('background', ' #e4393c').siblings().css('background', '#f7f7f7');
@@ -56,10 +54,10 @@ $(function(){
 
 
 
-	
 
 
-	
+
+
 
 		$(".box-attr dd").click(function() {
 			$(this).css({
@@ -266,7 +264,7 @@ $(".zjxs").mouseover(function () {
 	$(".header_wdjd").css("display","block");
 }).mouseout(function(){
 	$(".header_wdjd").css("display","none");
-	
+
 })
 
 //手机京东显示隐藏

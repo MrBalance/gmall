@@ -13,17 +13,18 @@ import java.io.Serializable;
  * @author
  */
 @Data
-@JsonSerialize(using= ToStringSerializer.class)
 public class PmsSkuImage implements Serializable {
     /**
      * 编号
      */
     @TableId(type = IdType.ID_WORKER)
+    @JsonSerialize(using= ToStringSerializer.class)
     private Long id;
 
     /**
      * 商品id
      */
+    @JsonSerialize(using= ToStringSerializer.class)
     private Long skuId;
 
     /**
@@ -39,6 +40,7 @@ public class PmsSkuImage implements Serializable {
     /**
      * 商品图片id
      */
+    @JsonSerialize(using= ToStringSerializer.class)
     private Long productImgId;
 
     /**

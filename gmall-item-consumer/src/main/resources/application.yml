@@ -2,16 +2,12 @@
 spring:
   dubbo:
     application:
-      name: gmall-manage-consumer
+      name: gmall-item-consumer
       registry: zookeeper://192.168.67.130:2181
     consumer:
       time: 1000
-
-  #devtools Config
-  devtools:
-    livereload:
-      port: 35730
+  thymeleaf:
+    cache: false
 # port Config
 server:
-  port: 8083
-
+  port: 8084

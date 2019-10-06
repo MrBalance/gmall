@@ -9,15 +9,13 @@ import com.balance.gmall.dictionary.PmsProductImageField;
 import com.balance.gmall.dictionary.PmsProductInfoField;
 import com.balance.gmall.dictionary.PmsProductSaleAttrField;
 import com.balance.gmall.dictionary.PmsProductSaleAttrValueField;
-import com.balance.gmall.po.sku.PmsSkuSaleAttrValue;
 import com.balance.gmall.po.spu.PmsProductImage;
 import com.balance.gmall.po.spu.PmsProductInfo;
 import com.balance.gmall.po.spu.PmsProductSaleAttr;
 import com.balance.gmall.po.spu.PmsProductSaleAttrValue;
-import com.balance.gmall.service.SkuService;
 import com.balance.gmall.service.SpuService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import org.apache.commons.lang.StringUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,6 +30,7 @@ import java.util.List;
  */
 @Component
 @Service(interfaceClass = SpuService.class)
+@Slf4j
 public class SpuServiceImpl implements SpuService {
 
     @Resource
@@ -42,8 +41,6 @@ public class SpuServiceImpl implements SpuService {
     private PmsProductSaleAttrDao pmsProductSaleAttrDao;
     @Resource
     private PmsProductSaleAttrValueDao pmsProductSaleAttrValueDao;
-    @Resource
-    private SkuService skuService;
 
     @Override
     public List<PmsProductInfo> selectPmsProductInfoListByCatalog3Id(Long catalog3Id) {
@@ -100,47 +97,8 @@ public class SpuServiceImpl implements SpuService {
         return pmsProductInfo;
     }
 
-    @Override
-    public List<PmsProductSaleAttr> selectPmsProductSaleAttrListCheckedBySpuId(Long productId, String skuId) {
-        QueryWrapper<PmsProductSaleAttr> wrapper = new QueryWrapper<>();
-        wrapper.eq(PmsProductSaleAttrField.PRODUCT_ID,productId);
-        List<PmsProductSaleAttr> pmsProductSaleAttrs = pmsProductSaleAttrDao.selectList(wrapper);
-        pmsProductSaleAttrs.forEach(pmsProductSaleAttr -> {
-            Long saleAttrId = pmsProductSaleAttr.getSaleAttrId();
-            List<PmsProductSaleAttrValue> pmsProductSaleAttrValues = selectPmsProductSaleAttrListCheckedBySpuIdAndSaleAttrId(productId,saleAttrId,skuId);
-            pmsProductSaleAttr.setSpuSaleAttrValueList(pmsProductSaleAttrValues);
-        });
-        return pmsProductSaleAttrs;
-    }
 
-    /**
-     * 根据spuId、saleAttrId和skuId获取spu销售属性值和被选中状态列表信息
-     * @param: spuId 平台商品信息id
-     * @param: saleAttrId 销售属性id
-     * @param: skuId
-     * @return:
-     * @throw:
-     * @Date: 2019/9/26 - 16:02
-     * @author: yunzhang.du
-     */
-    private List<PmsProductSaleAttrValue> selectPmsProductSaleAttrListCheckedBySpuIdAndSaleAttrId(Long productId, Long saleAttrId, String skuId) {
-        QueryWrapper<PmsProductSaleAttrValue> spuWrapper = new QueryWrapper<>();
-        spuWrapper.eq(PmsProductSaleAttrValueField.PRODUCT_ID,productId);
-        spuWrapper.eq(PmsProductSaleAttrValueField.SALE_ATTR_ID,saleAttrId);
-        List<PmsProductSaleAttrValue> pmsProductSaleAttrValues = pmsProductSaleAttrValueDao.selectList(spuWrapper);
-        PmsSkuSaleAttrValue pmsSkuSaleAttrValue = skuService.selectPmsSkuSaleAttrValueListBySkuIdAndSaleAttrId(skuId, saleAttrId);
-        String saleAttrValueName = pmsSkuSaleAttrValue.getSaleAttrValueName();
-        if(StringUtils.isNotBlank(saleAttrValueName)){
-            pmsProductSaleAttrValues.forEach(pmsProductSaleAttrValue -> {
-                if (saleAttrValueName.equals(pmsProductSaleAttrValue.getSaleAttrValueName())) {
-                    pmsProductSaleAttrValue.setChecked(true);
-                } else {
-                    pmsProductSaleAttrValue.setChecked(false);
-                }
-            });
-        }
-        return pmsProductSaleAttrValues;
-    }
+
 
     /**
      * 根据spuId和saleAttrId获取spu销售属性值列表信息
@@ -167,15 +125,14 @@ public class SpuServiceImpl implements SpuService {
      * @Date: 2019/9/23 - 15:38
      * @author: yunzhang.du
      */
-    private Integer saveSpuSaleAttr(PmsProductSaleAttr spuSaleAttr) {
-        int result = pmsProductSaleAttrDao.insert(spuSaleAttr);
+    private void saveSpuSaleAttr(PmsProductSaleAttr spuSaleAttr) {
+        pmsProductSaleAttrDao.insert(spuSaleAttr);
         Long productId = spuSaleAttr.getProductId();
         List<PmsProductSaleAttrValue> spuSaleAttrValueList = spuSaleAttr.getSpuSaleAttrValueList();
         spuSaleAttrValueList.forEach(spuSaleAttrValue -> {
             spuSaleAttrValue.setProductId(productId);
             pmsProductSaleAttrValueDao.insert(spuSaleAttrValue);
         });
-        return result;
     }
 
 }

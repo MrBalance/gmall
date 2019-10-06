@@ -1,0 +1,27 @@
+# Dubbo Config
+spring:
+  dubbo:
+    application:
+      # 注册在注册中心的名称，唯一标识，切勿重复
+      name: gmall-item-service
+    # 注册中心地址，zookeeper集群
+    # 单zookeeper服务：zookeeper://127.0.0.1:2181
+    registry:
+      address: zookeeper://192.168.67.130:2181
+    # 暴露服务的方式
+    protocol:
+      id: dubbo
+      # 默认名称，勿修改
+      name: dubbo
+      # 暴露服务端口（默认是20880，修改端口，不同服务者提供的端口不能重复）
+      # 把端口号改为字符串类型！！！！
+      port: "20881"
+      status: server
+  # Redis Config
+  redis:
+    host: 192.168.67.130
+    port: 6379
+    password:
+# port Config
+server:
+  port: 8083

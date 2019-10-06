@@ -13,26 +13,29 @@ import java.io.Serializable;
  * @author
  */
 @Data
-@JsonSerialize(using= ToStringSerializer.class)
 public class PmsSkuAttrValue implements Serializable {
     /**
      * 编号
      */
     @TableId(type = IdType.ID_WORKER)
+    @JsonSerialize(using= ToStringSerializer.class)
     private Long id;
 
     /**
      * 属性id（冗余)
      */
+    @JsonSerialize(using= ToStringSerializer.class)
     private Long attrId;
 
     /**
      * 属性值id
      */
+    @JsonSerialize(using= ToStringSerializer.class)
     private Long valueId;
 
     /**
      * skuid
      */
+    @JsonSerialize(using= ToStringSerializer.class)
     private Long skuId;
 }

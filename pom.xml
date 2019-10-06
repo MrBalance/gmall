@@ -21,26 +21,28 @@
         <module>gmall-manage-api</module>
         <module>gmall-manage-service</module>
         <module>gmall-manage-consumer</module>
+        <module>gmall-item-api</module>
+        <module>gmall-item-service</module>
+        <module>gmall-item-consumer</module>
         <module>gmall-dictionary</module>
         <module>gmall-base</module>
+        <module>gmall-service-base</module>
     </modules>
 
     <properties>
-        <java.version>1.8</java.version>
-        <mybatis-plus.version>3.2.0</mybatis-plus.version>
         <gmall-manage-api.version>1.0-SNAPSHOT</gmall-manage-api.version>
+        <gmall-item-api.version>1.0-SNAPSHOT</gmall-item-api.version>
         <gmall-dictionary.version>1.0-SNAPSHOT</gmall-dictionary.version>
         <gmall-base.version>1.0-SNAPSHOT</gmall-base.version>
+        <gmall-service-base.version>1.0-SNAPSHOT</gmall-service-base.version>
+        <java.version>1.8</java.version>
+        <mybatis-plus.version>3.2.0</mybatis-plus.version>
         <mysql.version>5.1.34</mysql.version>
         <zookeeper.version>0.10</zookeeper.version>
         <dubbo.version>2.0.0</dubbo.version>
         <fastdfs-client-java.version>1.27-SNAPSHOT</fastdfs-client-java.version>
-        <commons-beanutils.version>1.9.3</commons-beanutils.version>
-        <commons-collections.version>3.2.2</commons-collections.version>
-        <commons-lang.version>2.6</commons-lang.version>
-        <commons-logging.version>1.2</commons-logging.version>
-        <ezmorph.version>1.0.6</ezmorph.version>
         <json-lib.version>2.4</json-lib.version>
+        <redison.version>3.5.7</redison.version>
     </properties>
 
     <dependencyManagement>
@@ -58,6 +60,12 @@
                 <artifactId>gmall-manage-api</artifactId>
                 <version>${gmall-manage-api.version}</version>
             </dependency>
+            <!--item api 依赖-->
+            <dependency>
+                <groupId>com.balance.gmall.item.api</groupId>
+                <artifactId>gmall-item-api</artifactId>
+                <version>${gmall-item-api.version}</version>
+            </dependency>
             <!--dictionary模块依赖-->
             <dependency>
                 <groupId>com.balance.gmall.dictionary</groupId>
@@ -69,6 +77,12 @@
                 <groupId>com.balance.gmall.base</groupId>
                 <artifactId>gmall-base</artifactId>
                 <version>${gmall-base.version}</version>
+            </dependency>
+            <!--service-base模块依赖-->
+            <dependency>
+                <groupId>com.balance.gmall.service.base</groupId>
+                <artifactId>gmall-service-base</artifactId>
+                <version>${gmall-service-base.version}</version>
             </dependency>
             <!--zookeeper驱动-->
             <dependency>
@@ -88,32 +102,13 @@
                 <artifactId>fastdfs-client-java</artifactId>
                 <version>${fastdfs-client-java.version}</version>
             </dependency>
+            <!-- redisson -->
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson</artifactId>
+                <version>${redison.version}</version>
+            </dependency>
             <!--JsonObject 相关依赖包-->
-            <dependency>
-                <groupId>commons-beanutils</groupId>
-                <artifactId>commons-beanutils</artifactId>
-                <version>${commons-beanutils.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>commons-collections</groupId>
-                <artifactId>commons-collections</artifactId>
-                <version>${commons-collections.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>commons-lang</groupId>
-                <artifactId>commons-lang</artifactId>
-                <version>${commons-lang.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>commons-logging</groupId>
-                <artifactId>commons-logging</artifactId>
-                <version>${commons-logging.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>net.sf.ezmorph</groupId>
-                <artifactId>ezmorph</artifactId>
-                <version>${ezmorph.version}</version>
-            </dependency>
             <dependency>
                 <groupId>net.sf.json-lib</groupId>
                 <artifactId>json-lib</artifactId>

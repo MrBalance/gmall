@@ -11,6 +11,7 @@
 	</head>
 	<body>
 		<div id="max">
+			<input type="hidden" id="valuesSku" th:value="${skuInfoMap}" />
 			<header>
 				<div class="min">
 					<ul class="header_ul_left">
@@ -1026,7 +1027,6 @@
             //页面上的hashjson
             var valuesSku = $("#valuesSku").attr("value");
             var valuesSkuJson=JSON.parse(valuesSku);
-
             // 看看hash有没有
             var skuId= valuesSkuJson[valueIds];
             // 当前sku

@@ -3,8 +3,6 @@ package com.balance.gmall.service;
 import com.balance.gmall.po.sku.PmsSkuInfo;
 import com.balance.gmall.po.sku.PmsSkuSaleAttrValue;
 
-import java.util.Map;
-
 /**
  * @author: yunzhang.du
  * @date: 2019年09月25日
@@ -28,16 +26,6 @@ public interface SkuService {
     Integer saveSkuInfo(PmsSkuInfo pmsSkuInfo);
 
     /**
-     * 根据商品skuId获取商品skuInfo对象
-     * @param: skuId
-     * @return: PmsSkuInfo
-     * @throw:
-     * @Date: 2019/9/26 - 11:01
-     * @author: yunzhang.du
-     */
-    PmsSkuInfo selectPmsSkuInfoBySkuId(String skuId);
-
-    /**
      * 根据skuId和saleAttrId获取sku销售属性值列表信息
      * @param: skuId
      * @param: saleAttrId 销售属性id
@@ -47,6 +35,4 @@ public interface SkuService {
      * @author: yunzhang.du
      */
     PmsSkuSaleAttrValue selectPmsSkuSaleAttrValueListBySkuIdAndSaleAttrId(String skuId, Long saleAttrId);
-
-    Map<String,String> selectPmsSkuInfoHashMapBySpuId(Long productId);
 }

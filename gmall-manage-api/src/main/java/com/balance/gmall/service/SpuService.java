@@ -65,14 +65,4 @@ public interface SpuService {
      * @author: yunzhang.du
      */
     PmsProductInfo selectPmsProductInfoBySpuId(Long spuId);
-
-    /**
-     * 根据spuId获取spu销售属性列表被选中的信息
-     * @param: spuId 平台商品信息id
-     * @return:
-     * @throw:
-     * @Date: 2019/9/26 - 15:58
-     * @author: yunzhang.du
-     */
-    List<PmsProductSaleAttr> selectPmsProductSaleAttrListCheckedBySpuId(Long productId, String skuId);
 }

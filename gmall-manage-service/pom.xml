@@ -15,15 +15,11 @@
     <description>Demo project for Spring Boot</description>
 
     <dependencies>
-        <!--mybatis plus依赖-->
+        <!--lombok注解依赖-->
         <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-        </dependency>
-        <!--jdbc驱动依赖-->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
         </dependency>
         <!--web依赖-->
         <dependency>
@@ -51,15 +47,10 @@
             <groupId>com.balance.gmall.base</groupId>
             <artifactId>gmall-base</artifactId>
         </dependency>
-        <!--zookeeper驱动-->
+        <!--service-base模块依赖-->
         <dependency>
-            <groupId>com.101tec</groupId>
-            <artifactId>zkclient</artifactId>
-        </dependency>
-        <!--dubbo依赖-->
-        <dependency>
-            <groupId>com.alibaba.spring.boot</groupId>
-            <artifactId>dubbo-spring-boot-starter</artifactId>
+            <groupId>com.balance.gmall.service.base</groupId>
+            <artifactId>gmall-service-base</artifactId>
         </dependency>
     </dependencies>
 
