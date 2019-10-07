@@ -56,12 +56,13 @@ public class RpcItemServiceImpl implements RpcItemService {
 
     @Override
     public PmsSkuInfo selectPmsSkuInfoBySkuId(String skuId) {
-        PmsSkuInfo pmsSkuInfo = null;
+        PmsSkuInfo pmsSkuInfo;
         RBucket<PmsSkuInfo> bucket = redissonClient.getBucket("skuInfo:" + skuId);
         if (null == bucket.get()) {
             // 获取分布式锁
             RLock lock = redissonClient.getLock("skuInfo:lock:" + skuId);
             try {
+                Thread.sleep(6000);
                 if (lock.tryLock(3, 6, TimeUnit.SECONDS)) {
                     pmsSkuInfo = pmsSkuInfoDao.selectById(skuId);
                     if (null != pmsSkuInfo) {
@@ -73,11 +74,16 @@ public class RpcItemServiceImpl implements RpcItemService {
                         pmsSkuInfo = new PmsSkuInfo();
                     }
                     bucket.set(pmsSkuInfo);
+                } else {
+                    log.info("|锁自旋|-|类|-|RpcItemServiceImpl|-|调用方法|-|selectPmsSkuInfoBySkuId|");
+                    pmsSkuInfo = selectPmsSkuInfoBySkuId(skuId);
                 }
             } catch (InterruptedException e) {
                 lock.unlock();
                 log.error("|分布式锁异常|-|" + e.toString() + "|");
                 throw new DescribeException(ExceptionEnum.DATA_LOAD_FAIL);
+            } finally {
+                lock.unlock();
             }
         } else {
             pmsSkuInfo = bucket.get();
@@ -87,7 +93,7 @@ public class RpcItemServiceImpl implements RpcItemService {
 
     @Override
     public List<PmsProductSaleAttr> selectPmsProductSaleAttrListCheckedBySpuId(Long productId, String skuId) {
-        List<PmsProductSaleAttr> pmsProductSaleAttrs = null;
+        List<PmsProductSaleAttr> pmsProductSaleAttrs;
         RBucket<List<PmsProductSaleAttr>> bucket = redissonClient.getBucket("PmsProductSaleAttrList:productId:" + productId + ":skuId" + skuId);
         if (null == bucket.get()) {
             RLock lock = redissonClient.getLock("PmsProductSaleAttrListLock:" + productId + ":skuId" + skuId);
@@ -105,11 +111,15 @@ public class RpcItemServiceImpl implements RpcItemService {
                         pmsProductSaleAttrs = new ArrayList<>();
                     }
                     bucket.set(pmsProductSaleAttrs);
+                } else {
+                    log.info("|锁自旋|-|类|-|RpcItemServiceImpl|-|调用方法|-|selectPmsProductSaleAttrListCheckedBySpuId|");
+                    pmsProductSaleAttrs = selectPmsProductSaleAttrListCheckedBySpuId(productId, skuId);
                 }
             } catch (InterruptedException e) {
-                lock.unlock();
                 log.error("|分布式锁异常|-|" + e.toString() + "|");
                 throw new DescribeException(ExceptionEnum.DATA_LOAD_FAIL);
+            } finally {
+               lock.unlock();
             }
         } else {
             pmsProductSaleAttrs = bucket.get();
@@ -136,12 +146,17 @@ public class RpcItemServiceImpl implements RpcItemService {
                         });
                         pmsSkuInfoJson.put(key.toString(), skuId.toString());
                     }
+                    bucket.set(pmsSkuInfoJson);
+                } else {
+                    log.info("|锁自旋|-|类|-|RpcItemServiceImpl|-|调用方法|-|selectPmsSkuInfoJsonBySpuId|");
+                    pmsSkuInfoJson = selectPmsSkuInfoJsonBySpuId(productId);
                 }
-                bucket.set(pmsSkuInfoJson);
             } catch (InterruptedException e) {
                 lock.unlock();
                 log.error("|分布式锁异常|-|" + e.toString() + "|");
                 throw new DescribeException(ExceptionEnum.DATA_LOAD_FAIL);
+            } finally {
+                lock.unlock();
             }
         } else {
             pmsSkuInfoJson = bucket.get();

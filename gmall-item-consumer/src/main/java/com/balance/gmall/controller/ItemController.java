@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Controller
 public class ItemController {
 
-    @Reference
+    @Reference(timeout = 6000)
     private ItemService itemService;
 
     /**

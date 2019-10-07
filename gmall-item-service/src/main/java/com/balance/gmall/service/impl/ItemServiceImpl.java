@@ -25,7 +25,7 @@ import java.util.Map;
 @Service(interfaceClass = ItemService.class)
 public class ItemServiceImpl implements ItemService {
 
-    @Reference
+    @Reference(timeout = 6000)
     private RpcItemService itemServiceRpc;
     @Resource
     RedissonClient redissonClient;
