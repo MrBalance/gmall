@@ -23,7 +23,7 @@ import java.util.List;
 public class PmsBaseCatalog1DaoTest {
 
     @Resource
-    PmsBaseCatalog1Dao pmsBaseCatalog1Dao;
+    private PmsBaseCatalog1Dao pmsBaseCatalog1Dao;
 
     @Test
     public void selectAllTest() {

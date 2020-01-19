@@ -52,7 +52,7 @@ public class FileUploadUtil {
         FileUploadUtil fileUploadUtil = new FileUploadUtil();
         String[] uploadFile = fileUploadUtil.fileUpload(file);
         // ImageUploadResponse image = new ImageUploadResponse();
-        StringBuffer url = new StringBuffer("http://192.168.67.130");
+        StringBuffer url = new StringBuffer("http://192.168.67.132");
         for (int i = 0; i < uploadFile.length; i++) {
             url.append("/").append(uploadFile[i]);
         }

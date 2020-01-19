@@ -2,7 +2,9 @@ package com.balance.gmall;
 
 import com.balance.gmall.po.attr.PmsBaseAttrInfo;
 import com.balance.gmall.po.attr.PmsBaseAttrValue;
+import com.balance.gmall.po.sku.PmsSkuInfo;
 import com.balance.gmall.service.BaseAttrService;
+import com.balance.gmall.service.rpc.ManageToSearchRpcService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,7 +25,9 @@ import java.util.List;
 @SpringBootTest
 public class PmsBaseAttrInfoServiceTest {
     @Resource
-    BaseAttrService attrService;
+    private BaseAttrService attrService;
+    @Resource
+    private ManageToSearchRpcService manageToSearchRpcService;
 
     @Test
     public void saveAttrInfo() {
@@ -39,5 +43,11 @@ public class PmsBaseAttrInfoServiceTest {
         pmsBaseAttrValues.add(pmsBaseAttrValue2);
         pmsBaseAttrInfo.setAttrValueList(pmsBaseAttrValues);
         attrService.saveAttrInfo(pmsBaseAttrInfo);
+    }
+
+    @Test
+    public void selectAllPmsSkuInfo() {
+        List<PmsSkuInfo> pmsSkuInfoList = manageToSearchRpcService.selectAllPmsSkuInfo();
+        System.out.println(pmsSkuInfoList);
     }
 }

@@ -21,7 +21,7 @@ import java.util.List;
 @SpringBootTest
 public class PmsBaseCatalog2ServiceTest {
     @Resource
-    BaseCatalogService catalogService;
+    private BaseCatalogService catalogService;
 
     @Test
     public void selectListByCatalog1IdIdTest() {

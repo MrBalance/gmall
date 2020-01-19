@@ -7,7 +7,7 @@ spring:
     # 注册中心地址，zookeeper集群
     # 单zookeeper服务：zookeeper://127.0.0.1:2181
     registry:
-      address: zookeeper://192.168.67.130:2181
+      address: zookeeper://192.168.67.132:2181
     # 暴露服务的方式
     protocol:
       id: dubbo
@@ -19,7 +19,7 @@ spring:
       status: server
   # Redis Config
   redis:
-    host: 192.168.67.130
+    host: 192.168.67.132
     port: 6379
     password:
 # port Config

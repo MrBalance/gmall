@@ -3,6 +3,8 @@ package com.balance.gmall.service;
 import com.balance.gmall.po.sku.PmsSkuInfo;
 import com.balance.gmall.po.sku.PmsSkuSaleAttrValue;
 
+import java.util.List;
+
 /**
  * @author: yunzhang.du
  * @date: 2019年09月25日
@@ -29,7 +31,7 @@ public interface SkuService {
      * 根据skuId和saleAttrId获取sku销售属性值列表信息
      * @param: skuId
      * @param: saleAttrId 销售属性id
-     * @return:
+     * @return: PmsSkuSaleAttrValue
      * @throw:
      * @Date: 2019/9/26 - 16:19
      * @author: yunzhang.du

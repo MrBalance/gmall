@@ -47,12 +47,23 @@ public class BaseAttrServiceImpl implements BaseAttrService {
         QueryWrapper<PmsBaseAttrInfo> wrapper = new QueryWrapper<>();
         wrapper.eq(PmsBaseAttrInfoField.CATALOG3_ID, catalog3Id);
         List<PmsBaseAttrInfo> pmsBaseAttrInfos = pmsBaseAttrInfoDao.selectList(wrapper);
-        pmsBaseAttrInfos.forEach(pmsBaseAttrInfo -> {
-            Long id = pmsBaseAttrInfo.getId();
-            List<PmsBaseAttrValue> pmsBaseAttrValues = selectBaseAttrValueListByAttrId(id);
-            pmsBaseAttrInfo.setAttrValueList(pmsBaseAttrValues);
-        });
+        pmsBaseAttrInfos.forEach(this::selectBaseAttrValueListByBaseAttrInfo);
         return pmsBaseAttrInfos;
+    }
+
+    /**
+     * 根据pmsBaseAttrInfo封装pmsBaseAttrValues查询列表结果
+     *
+     * @param: pmsBaseAttrInfo
+     * @return:
+     * @throw:
+     * @Date: 2020/1/2 - 17:15
+     * @author: yunzhang.du
+     */
+    private void selectBaseAttrValueListByBaseAttrInfo(PmsBaseAttrInfo pmsBaseAttrInfo) {
+        Long id = pmsBaseAttrInfo.getId();
+        List<PmsBaseAttrValue> pmsBaseAttrValues = selectBaseAttrValueListByAttrId(id);
+        pmsBaseAttrInfo.setAttrValueList(pmsBaseAttrValues);
     }
 
     @Override

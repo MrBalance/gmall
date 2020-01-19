@@ -87,7 +87,7 @@ public class LogAdvice {
      * @author: yunzhang.du
      */
     @Around("pointCut()")
-    public Object ServiceAroundLog(ProceedingJoinPoint joinPoint) throws Throwable {
+    public Object ServiceAroundLog( ProceedingJoinPoint joinPoint) throws Throwable {
         // 1.获取节点信息
         String className = joinPoint.getTarget().getClass().getName();
         String methodName = joinPoint.getSignature().getName();

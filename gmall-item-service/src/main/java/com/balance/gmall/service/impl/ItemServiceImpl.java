@@ -5,7 +5,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.balance.gmall.po.sku.PmsSkuInfo;
 import com.balance.gmall.po.spu.PmsProductSaleAttr;
 import com.balance.gmall.service.ItemService;
-import com.balance.gmall.service.rpc.RpcItemService;
+import com.balance.gmall.service.rpc.ManageToItemRpcService;
 import net.sf.json.JSONObject;
 import org.redisson.api.RedissonClient;
 import org.springframework.stereotype.Component;
@@ -26,7 +26,7 @@ import java.util.Map;
 public class ItemServiceImpl implements ItemService {
 
     @Reference(timeout = 6000)
-    private RpcItemService itemServiceRpc;
+    private ManageToItemRpcService manageRpcService;
     @Resource
     RedissonClient redissonClient;
 
@@ -34,11 +34,11 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public Map<String, Object> initItem(String skuId) {
         Map<String, Object> resultMap = new HashMap<>(3);
-        PmsSkuInfo pmsSkuInfo = itemServiceRpc.selectPmsSkuInfoBySkuId(skuId);
+        PmsSkuInfo pmsSkuInfo = manageRpcService.selectPmsSkuInfoBySkuId(skuId);
         Long productId = pmsSkuInfo.getProductId();
         if(null != productId) {
-            List<PmsProductSaleAttr> pmsProductSaleAttrs = itemServiceRpc.selectPmsProductSaleAttrListCheckedBySpuId(productId,skuId);
-            Map skuInfoMap = itemServiceRpc.selectPmsSkuInfoJsonBySpuId(productId);
+            List<PmsProductSaleAttr> pmsProductSaleAttrs = manageRpcService.selectPmsProductSaleAttrListCheckedBySpuId(productId,skuId);
+            Map skuInfoMap = manageRpcService.selectPmsSkuInfoJsonBySpuId(productId);
             resultMap.put("skuInfo",pmsSkuInfo);
             resultMap.put("spuSaleAttrListCheckBySku",pmsProductSaleAttrs);
             resultMap.put("skuInfoMap", JSONObject.fromObject(skuInfoMap));

@@ -2,18 +2,18 @@
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.67.130:3306/g_mall_study?characterEncoding=UTF-8
+    url: jdbc:mysql://192.168.67.132:3306/g_mall_study?characterEncoding=UTF-8
     username: root
     password:
   # Dubbo Config
   dubbo:
     application:
       name: gmall-manage-service
-      registry: zookeeper://192.168.67.130:2181
+      registry: zookeeper://192.168.67.132:2181
       port: 20880
   # Redis Config
   redis:
-    host: 192.168.67.130
+    host: 192.168.67.132
     port: 6379
     password:
   #devtools Config
