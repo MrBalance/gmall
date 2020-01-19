@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.balance.gmall</groupId>
+        <artifactId>gmall</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <groupId>com.balance.gmall.search.service</groupId>
+    <artifactId>gamll-search-service</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>gmall-search-service</name>
+    <description>Demo project for Spring Boot</description>
+
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
+
+    <dependencies>
+        <!--web依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!--测试类依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!--manage模块api依赖-->
+        <dependency>
+            <groupId>com.balance.gmall.manage.api</groupId>
+            <artifactId>gmall-manage-api</artifactId>
+        </dependency>
+        <!--search模块api依赖-->
+        <dependency>
+            <groupId>com.balance.gmall.search.api</groupId>
+            <artifactId>gmall-search-api</artifactId>
+        </dependency>
+        <!--base模块依赖-->
+        <dependency>
+            <groupId>com.balance.gmall.base</groupId>
+            <artifactId>gmall-base</artifactId>
+        </dependency>
+        <!--service-base模块依赖-->
+        <dependency>
+            <groupId>com.balance.gmall.service.base</groupId>
+            <artifactId>gmall-service-base</artifactId>
+        </dependency>
+        <!--elasticsearch 连接依赖包-->
+        <dependency>
+            <groupId>io.searchbox</groupId>
+            <artifactId>jest</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.elasticsearch</groupId>
+            <artifactId>elasticsearch</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <!-- 跳过maven，install时启动时检查-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
