@@ -48,7 +48,7 @@
         <json-lib.version>2.4</json-lib.version>
         <redison.version>3.5.7</redison.version>
         <jest.version>5.3.3</jest.version>
-        <elasticSearch.version>6.2.4</elasticSearch.version>
+        <elasticSearch.version>6.8.15</elasticSearch.version>
     </properties>
 
     <dependencyManagement>
